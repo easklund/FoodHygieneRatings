@@ -2,6 +2,9 @@ package com.example.foodhygieneratings;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
