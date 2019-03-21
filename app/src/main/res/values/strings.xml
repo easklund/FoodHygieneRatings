@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Food Hygiene Ratings</string>
+    <string name="appName">Food Hygiene Ratings</string>
+    <string name="startSearching">Search</string>
 </resources>

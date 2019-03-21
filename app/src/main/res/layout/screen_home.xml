@@ -10,29 +10,23 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <TextView
+    <Button
+        android:id="@+id/StartSearching"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/startSearching"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/text1"/>
+        android:theme="@style/newButton"
+        android:onClick="StartSearch"/>
     <Spinner
         android:id="@+id/BuissnesSpinner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text1"
+        app:layout_constraintTop_toBottomOf="@id/StartSearching"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hejhej"
-        app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:theme="@style/newButton"/>
 
 </android.support.constraint.ConstraintLayout>
