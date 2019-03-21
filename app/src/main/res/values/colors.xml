@@ -10,4 +10,6 @@
     <color name="homeFrag">#D81B60</color>
     <color name="aboutFrag">#04B431</color>
     <color name="settingsFrag">#5882FA</color>
+    <color name="titleText">#FFFFFF</color>
+
 </resources>
