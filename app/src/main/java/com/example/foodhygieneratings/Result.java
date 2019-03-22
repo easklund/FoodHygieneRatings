@@ -30,7 +30,10 @@ public class Result extends AppCompatActivity {
     private String TAG = "Result";
 
     private ArrayList<Establishment> establishments =  new ArrayList<Establishment>();
-    public ArrayAdapter establishAdpt;
+    private ArrayAdapter establishAdpt;
+
+    private int businessTypeId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class Result extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Result from you search");
+
+        businessTypeId = getIntent().getIntExtra("BusinessName", 0);
+        Log.d(TAG, "onCreate: businessTypeId; " + businessTypeId);
 
         establishAdpt = new ArrayAdapter(this,android.R.layout.simple_selectable_list_item, establishments);
         ListView listview = (ListView)findViewById(R.id.ListViewResult);
@@ -62,7 +68,11 @@ public class Result extends AppCompatActivity {
     public void onRequestEstablishment(View view){
         Log.d(TAG, "onRequestEstablishment: ");
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        final String allEstablishments = "http://api.ratings.food.gov.uk/Establishments/basic";
+        String allEstablishments = "http://api.ratings.food.gov.uk/Establishments/basic";
+        if(businessTypeId!=0){
+            allEstablishments = "http://api.ratings.food.gov.uk/Establishments?businessTypeId=" + businessTypeId;
+        }
+        Log.d(TAG, "onRequestEstablishment: allEstablishments" + allEstablishments);
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, allEstablishments, null,
                 new Response.Listener<JSONObject>() {
                     @Override

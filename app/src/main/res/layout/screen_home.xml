@@ -21,11 +21,80 @@
         app:layout_constraintTop_toTopOf="parent"
         android:theme="@style/newButton"
         android:onClick="StartSearch"/>
+    <TextView
+        android:id="@+id/TextBusieness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick a Busieness type"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@id/StartSearching"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
     <Spinner
         android:id="@+id/BuissnesSpinner"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/StartSearching"
+        app:layout_constraintTop_toBottomOf="@id/TextBusieness"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <TextView
+        android:id="@+id/TextRatingOperator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick how to select rating"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TextRatingOperator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equal to"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/check1"
+            android:onClick="check1"/>
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="less than"
+            android:id="@+id/check2"
+            android:onClick="check2"/>
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="higher than"
+            android:id="@+id/check3"
+            android:onClick="check3"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick rating"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@id/linearRating"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <Spinner
+        android:id="@+id/RatingOperatorSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TextRating"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
