@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.android.volley.AuthFailureError;
@@ -29,7 +30,9 @@ public class Home extends AppCompatActivity {
     private String TAG = "Home";
 
     private ArrayList<Business> businesses =  new ArrayList<Business>();
-    public ArrayAdapter businessAdpt;
+    private ArrayAdapter businessAdpt;
+    private String ratingOperator;
+    private int rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
 
+        ratingOperator = "Equal";
+        rating = -1;
+
         Spinner spinner = (Spinner) findViewById(R.id.BuissnesSpinner);
         businessAdpt = new ArrayAdapter(this,android.R.layout.simple_selectable_list_item, businesses);
         businessAdpt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -46,11 +52,63 @@ public class Home extends AppCompatActivity {
         onRequestBusiness();
 
     }
-    public void check1(View view) {
+
+    public void onRadioRatingOperator(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioEqual:
+                if (checked)
+                    Log.d(TAG, "onRadioRatingOperator: Equal");
+                    ratingOperator = "Equal";
+                    break;
+            case R.id.radioLess:
+                if (checked)
+                    Log.d(TAG, "onRadioRatingOperator: LessThanOrEqual");
+                    ratingOperator  = "LessThanOrEqual";
+                    break;
+            case R.id.radioHigher:
+                if (checked)
+                    Log.d(TAG, "onRadioRatingOperator: GreaterThanOrEqual");
+                    ratingOperator  = "GreaterThanOrEqual";
+                    break;
+        }
     }
-    public void check2(View view) {
-    }
-    public void check3(View view) {
+    public void onRadioRating(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio1:
+                if (checked)
+                    Log.d(TAG, "onRadioRating: 1");
+                    rating = 1;
+                    break;
+            case R.id.radio2:
+                if (checked)
+                    Log.d(TAG, "onRadioRating: 2");
+                    rating =2;
+                    break;
+            case R.id.radio3:
+                if (checked)
+                    Log.d(TAG, "onRadioRating: 3");
+                    rating = 3;
+                    break;
+            case R.id.radio4:
+                if (checked)
+                    Log.d(TAG, "onRadioRating: 4");
+                    rating = 4;
+                    break;
+            case R.id.radio5:
+                if (checked)
+                    Log.d(TAG, "onRadioRating: 5");
+                    rating = 5;
+                    break;
+        }
+
     }
 
     public void StartSearch(View view){
@@ -58,6 +116,8 @@ public class Home extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.BuissnesSpinner);
         int a = spinner.getSelectedItemPosition();
         intent.putExtra("BusinessName", businesses.get(a).getId());
+        intent.putExtra("Rating", rating);
+        intent.putExtra("RatingOperator", ratingOperator);
         startActivity(intent);
     }
 

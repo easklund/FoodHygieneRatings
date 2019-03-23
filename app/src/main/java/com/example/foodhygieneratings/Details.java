@@ -92,6 +92,7 @@ public class Details extends AppCompatActivity {
         TextView name = findViewById(R.id.NameView);
         TextView type = findViewById(R.id.TypeView);
         TextView id = findViewById(R.id.IDView);
+        TextView rate = findViewById(R.id.RateView);
         Log.d(TAG, "estabishmentsList: " + items.getString("BusinessName"));
         try{
             Log.d(TAG, "estabishmentsList: in Try");
@@ -102,6 +103,7 @@ public class Details extends AppCompatActivity {
             type.setText("Type: " + items.getString("BusinessType"));
             String s = "ID: " + Integer.toString(items.getInt("FHRSID"));
             id.setText(s);
+            rate.setText("Rate: " + items.getString("RatingValue"));
 
         }catch (JSONException err){
             Log.d(TAG, "estabishmentsList, error: " + err);

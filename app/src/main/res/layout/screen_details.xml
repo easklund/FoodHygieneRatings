@@ -35,4 +35,12 @@
         android:textSize="20dp"
         android:textColor="@color/text"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IDView"
+        android:id="@+id/RateView"
+        android:textSize="20dp"
+        android:textColor="@color/text"/>
+
 </RelativeLayout>

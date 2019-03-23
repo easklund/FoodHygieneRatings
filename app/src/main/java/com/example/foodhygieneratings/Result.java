@@ -33,6 +33,8 @@ public class Result extends AppCompatActivity {
     private ArrayAdapter establishAdpt;
 
     private int businessTypeId;
+    private int rate;
+    private String rateOperator;
 
 
     @Override
@@ -45,6 +47,10 @@ public class Result extends AppCompatActivity {
 
         businessTypeId = getIntent().getIntExtra("BusinessName", 0);
         Log.d(TAG, "onCreate: businessTypeId; " + businessTypeId);
+        rate = getIntent().getIntExtra("Rating", -1);
+        Log.d(TAG, "onCreate: rate; " + rate);
+        rateOperator = getIntent().getStringExtra("RatingOperator");
+        Log.d(TAG, "onCreate: rate operator; " + rateOperator);
 
         establishAdpt = new ArrayAdapter(this,android.R.layout.simple_selectable_list_item, establishments);
         ListView listview = (ListView)findViewById(R.id.ListViewResult);
@@ -64,14 +70,39 @@ public class Result extends AppCompatActivity {
         listview.setOnItemClickListener(itemClickListener);
     }
 
+    private String getUrl(){
+        String urlBasic = "http://api.ratings.food.gov.uk/Establishments/basic";
+        String url = "http://api.ratings.food.gov.uk/Establishments?";
+        boolean hasFilter = false;
+        if(businessTypeId!=-1){
+            if(hasFilter){
+                url =  url + "&businessTypeId=" + businessTypeId;
+            }else{
+                url =  url + "businessTypeId=" + businessTypeId;
+                hasFilter = true;
+            }
+        }
+        if(rate!=-1){
+            if(hasFilter){
+                url =  url + "&ratingKey=" + rate;
+            }else{
+                url =  url + "ratingKey=" + rate;
+                hasFilter = true;
+            }
+            if(rateOperator!="Equal"){
+                url = url + "&ratingOperatorKey=" + rateOperator;
+            }
+        }
+        if(hasFilter){
+            return url;
+        }
+        return urlBasic;
+    }
 
     public void onRequestEstablishment(View view){
         Log.d(TAG, "onRequestEstablishment: ");
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String allEstablishments = "http://api.ratings.food.gov.uk/Establishments/basic";
-        if(businessTypeId!=0){
-            allEstablishments = "http://api.ratings.food.gov.uk/Establishments?businessTypeId=" + businessTypeId;
-        }
+        String allEstablishments = getUrl();
         Log.d(TAG, "onRequestEstablishment: allEstablishments" + allEstablishments);
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, allEstablishments, null,
                 new Response.Listener<JSONObject>() {
