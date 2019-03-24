@@ -35,7 +35,11 @@ public class Result extends AppCompatActivity {
     private int businessTypeId;
     private int rate;
     private String rateOperator;
-
+    private int regionId;
+    private int authorityId;
+    private double longitude;
+    private double latitude;
+    private int radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,17 @@ public class Result extends AppCompatActivity {
         Log.d(TAG, "onCreate: rate; " + rate);
         rateOperator = getIntent().getStringExtra("RatingOperator");
         Log.d(TAG, "onCreate: rate operator; " + rateOperator);
+        regionId = getIntent().getIntExtra("RegionId", -1);
+        Log.d(TAG, "onCreate: region id: " + regionId);
+        authorityId = getIntent().getIntExtra("AuthorityId", -1);
+        Log.d(TAG, "onCreate: authority id: " + authorityId);
+        longitude = getIntent().getDoubleExtra("Longitude", 0);
+        Log.d(TAG, "onCreate: longitude: " + longitude);
+        latitude = getIntent().getDoubleExtra("Latitude", 0);
+        Log.d(TAG, "onCreate: latitude: " + latitude);
+        radius = getIntent().getIntExtra("Radius", -1);
+        Log.d(TAG, "onCreate: raduis: " + radius);
+
 
         establishAdpt = new ArrayAdapter(this,android.R.layout.simple_selectable_list_item, establishments);
         ListView listview = (ListView)findViewById(R.id.ListViewResult);
@@ -93,6 +108,23 @@ public class Result extends AppCompatActivity {
                 url = url + "&ratingOperatorKey=" + rateOperator;
             }
         }
+        if(authorityId!=-1){
+            if(hasFilter){
+                url =  url + "&localAuthorityId=" + authorityId;
+            }else{
+                url =  url + "localAuthorityId=" + authorityId;
+                hasFilter = true;
+            }
+        }
+        if(radius!=-1){
+            if(hasFilter){
+                url =  url + "&longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
+            }else{
+                url =  url + "longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
+                hasFilter = true;
+            }
+        }
+
         if(hasFilter){
             return url;
         }

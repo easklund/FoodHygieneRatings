@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,120 +11,247 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/StartSearching"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/startSearching"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/newButton"
-        android:onClick="StartSearch"/>
-    <TextView
-        android:id="@+id/TextBusieness"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick a Busieness type"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/StartSearching"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <Spinner
-        android:id="@+id/BuissnesSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/TextBusieness"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    <TextView
-        android:id="@+id/TextRatingOperator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick how to select rating"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <RadioGroup
-        android:id="@+id/RadioRatingOperator"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/TextRatingOperator"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:orientation="horizontal">
-        <RadioButton android:id="@+id/radioEqual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Equal to"
-            android:onClick="onRadioRatingOperator"/>
-        <RadioButton android:id="@+id/radioLess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Less and equal to"
-            android:layout_marginStart="5dp"
-            android:onClick="onRadioRatingOperator"/>
-        <RadioButton android:id="@+id/radioHigher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Higher and equal to"
-            android:layout_marginStart="5dp"
-            android:onClick="onRadioRatingOperator"/>
-    </RadioGroup>
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TextView
-        android:id="@+id/TextRating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick rating"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/RadioRatingOperator"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <RadioGroup
-        android:id="@+id/RadioRating"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/TextRating"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:orientation="horizontal">
-        <RadioButton android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_marginStart="5dp"
-            android:onClick="onRadioRating"/>
-        <RadioButton android:id="@+id/radio2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:layout_marginStart="20dp"
-            android:onClick="onRadioRating"/>
-        <RadioButton android:id="@+id/radio3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:layout_marginStart="20dp"
-            android:onClick="onRadioRating"/>
-        <RadioButton android:id="@+id/radio4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:layout_marginStart="20dp"
-            android:onClick="onRadioRating"/>
-        <RadioButton android:id="@+id/radio5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:layout_marginStart="20dp"
-            android:onClick="onRadioRating"/>
-    </RadioGroup>
+        <android.support.constraint.ConstraintLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
+            <Button
+                android:id="@+id/StartSearching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="StartSearch"
+                android:text="@string/startSearching"
+                android:theme="@style/newButton"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/TextBusieness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick a Busieness type"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/StartSearching" />
+
+            <Spinner
+                android:id="@+id/BuissnesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextBusieness" />
+
+            <TextView
+                android:id="@+id/TextRatingOperator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick how to select rating"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/RadioRatingOperator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextRatingOperator">
+
+                <RadioButton
+                    android:id="@+id/radioEqual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="onRadioRatingOperator"
+                    android:text="Equal to" />
+
+                <RadioButton
+                    android:id="@+id/radioLess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="onRadioRatingOperator"
+                    android:text="Less and equal to" />
+
+                <RadioButton
+                    android:id="@+id/radioHigher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="onRadioRatingOperator"
+                    android:text="Higher and equal to" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TextRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick rating"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RadioRatingOperator" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/RadioRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextRating">
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:onClick="onRadioRating"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:onClick="onRadioRating"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:onClick="onRadioRating"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/radio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:onClick="onRadioRating"
+                    android:text="4" />
+
+                <RadioButton
+                    android:id="@+id/radio5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:onClick="onRadioRating"
+                    android:text="5" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TextRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick a region type"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RadioRating" />
+
+            <Spinner
+                android:id="@+id/RegionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextRegion" />
+
+            <TextView
+                android:id="@+id/TextAuthority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick a authority type"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RegionSpinner" />
+
+            <Spinner
+                android:id="@+id/AuthoritySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextAuthority" />
+
+            <TextView
+                android:id="@+id/TextRadian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter searching radisn in miles: "
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/AuthoritySpinner" />
+
+            <EditText
+                android:id="@+id/EditRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextRadian" />
+
+            <TextView
+                android:id="@+id/TextViewPositions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude: "
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EditRadius" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitude: "
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/longitude" />
+
+            <TextView
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="hej"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toRightOf="@id/TextViewPositions"
+                app:layout_constraintTop_toBottomOf="@id/EditRadius" />
+
+            <TextView
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="hej"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toRightOf="@id/TextViewPositions"
+                app:layout_constraintTop_toBottomOf="@id/longitude" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</RelativeLayout>
