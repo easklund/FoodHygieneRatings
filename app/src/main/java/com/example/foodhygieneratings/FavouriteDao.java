@@ -8,9 +8,14 @@ import android.arch.persistence.room.Query;
 public interface FavouriteDao {
 
         @Insert
-        void insertBook(Favourite fav);
+        void insertFavourite(Favourite fav);
 
         @Query("SELECT * FROM favourite WHERE FHRSID=:fhrsid LIMIT 1")
         Favourite retrieveFavfromFHRSID(int fhrsid);
+
+        @Query("SELECT * FROM favourite")
+        Favourite[] retrieveAllFave();
+
+
 
 }

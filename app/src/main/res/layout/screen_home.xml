@@ -19,8 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <android.support.constraint.ConstraintLayout
-
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -32,7 +31,26 @@
                 android:onClick="StartSearch"
                 android:text="@string/startSearching"
                 android:theme="@style/newButton"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+            <Button
+                android:id="@+id/ToFavourites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ToFavourites"
+                android:text="To Favourites"
+                android:theme="@style/newButton"
+                android:layout_toRightOf="@id/StartSearching"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginStart="30dp"/>
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/StartSearching"
+                app:layout_constraintTop_toBottomOf="@id/StartSearching"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 
@@ -42,14 +60,16 @@
                 android:layout_height="wrap_content"
                 android:text="Pick a Busieness type"
                 android:textSize="20dp"
+                android:layout_below="@id/searchView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/StartSearching" />
+                app:layout_constraintTop_toBottomOf="@id/searchView" />
 
             <Spinner
                 android:id="@+id/BuissnesSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/TextBusieness"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextBusieness" />
@@ -60,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pick how to select rating"
                 android:textSize="20dp"
+                android:layout_below="@id/BuissnesSpinner"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner" />
@@ -69,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_below="@id/TextRatingOperator"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextRatingOperator">
@@ -106,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pick rating"
                 android:textSize="20dp"
+                android:layout_below="@id/RadioRatingOperator"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RadioRatingOperator" />
@@ -115,6 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_below="@id/TextRating"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextRating">
@@ -166,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pick a region type"
                 android:textSize="20dp"
+                android:layout_below="@id/RadioRating"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RadioRating" />
@@ -174,6 +199,7 @@
                 android:id="@+id/RegionSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/TextRegion"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextRegion" />
@@ -184,6 +210,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pick a authority type"
                 android:textSize="20dp"
+                android:layout_below="@id/RegionSpinner"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RegionSpinner" />
@@ -192,6 +219,7 @@
                 android:id="@+id/AuthoritySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/TextAuthority"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextAuthority" />
@@ -202,6 +230,7 @@
                 android:layout_height="wrap_content"
                 android:text="Enter searching radisn in miles: "
                 android:textSize="20dp"
+                android:layout_below="@id/AuthoritySpinner"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/AuthoritySpinner" />
 
@@ -211,6 +240,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
+                android:layout_below="@id/TextRadian"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextRadian" />
 
@@ -220,6 +250,7 @@
                 android:layout_height="wrap_content"
                 android:text="Longitude: "
                 android:textSize="20dp"
+                android:layout_below="@id/EditRadius"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/EditRadius" />
 
@@ -228,6 +259,7 @@
                 android:layout_height="wrap_content"
                 android:text="Latitude: "
                 android:textSize="20dp"
+                android:layout_below="@id/TextViewPositions"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/longitude" />
 
@@ -236,8 +268,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="hej"
+                android:text="0"
                 android:textSize="20dp"
+                android:layout_below="@id/EditRadius"
+                android:layout_toRightOf="@+id/TextViewPositions"
                 app:layout_constraintLeft_toRightOf="@id/TextViewPositions"
                 app:layout_constraintTop_toBottomOf="@id/EditRadius" />
 
@@ -246,12 +280,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="hej"
+                android:text="0"
                 android:textSize="20dp"
+                android:layout_below="@id/TextViewPositions"
+                android:layout_toRightOf="@+id/TextViewPositions"
                 app:layout_constraintLeft_toRightOf="@id/TextViewPositions"
                 app:layout_constraintTop_toBottomOf="@id/longitude" />
 
-        </android.support.constraint.ConstraintLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

@@ -11,7 +11,7 @@ public class Favourite {
     @NonNull private int FHRSID;
 
     @ColumnInfo(name = "establishmentName")
-    private String name;
+    private String Name;
 
     public int getFHRSID() {
         return FHRSID;
@@ -22,10 +22,10 @@ public class Favourite {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 }

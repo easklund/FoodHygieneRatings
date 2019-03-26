@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Details"></activity>
+        <activity android:name=".Fave"></activity>
+        <activity android:name=".Details" />
         <activity android:name=".Result" />
         <activity android:name=".Home">
             <intent-filter>
