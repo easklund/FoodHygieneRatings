@@ -13,9 +13,27 @@
     <ListView
         android:id="@+id/ListViewResult"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@id/toolbar"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:text="NEXT"
+        android:onClick="nextPage"
+        android:theme="@style/newButton" />
+    <Button
+        android:id="@+id/PreviousButton"
+        android:text="PREVIOUS"
+        android:theme="@style/newButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="previousPage"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>

@@ -41,6 +41,10 @@ public class Result extends AppCompatActivity {
     private double latitude;
     private int radius;
 
+    private String url;
+    int page;
+    int maxPage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class Result extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Result from you search");
+        page = 1;
 
         businessTypeId = getIntent().getIntExtra("BusinessName", 0);
         Log.d(TAG, "onCreate: businessTypeId; " + businessTypeId);
@@ -86,49 +91,24 @@ public class Result extends AppCompatActivity {
     }
 
     private String getUrl(){
-        String urlBasic = "http://api.ratings.food.gov.uk/Establishments/basic";
-        String url = "http://api.ratings.food.gov.uk/Establishments?";
-        boolean hasFilter = false;
+        url = "http://api.ratings.food.gov.uk/Establishments?pageNumber=" + page +"&pageSize=20";
         if(businessTypeId!=-1){
-            if(hasFilter){
-                url =  url + "&businessTypeId=" + businessTypeId;
-            }else{
-                url =  url + "businessTypeId=" + businessTypeId;
-                hasFilter = true;
-            }
+            url =  url + "&businessTypeId=" + businessTypeId;
         }
         if(rate!=-1){
-            if(hasFilter){
-                url =  url + "&ratingKey=" + rate;
-            }else{
-                url =  url + "ratingKey=" + rate;
-                hasFilter = true;
-            }
+            url =  url + "&ratingKey=" + rate;
+
             if(rateOperator!="Equal"){
                 url = url + "&ratingOperatorKey=" + rateOperator;
             }
         }
         if(authorityId!=-1){
-            if(hasFilter){
-                url =  url + "&localAuthorityId=" + authorityId;
-            }else{
-                url =  url + "localAuthorityId=" + authorityId;
-                hasFilter = true;
-            }
+           url =  url + "&localAuthorityId=" + authorityId;
         }
         if(radius!=-1){
-            if(hasFilter){
-                url =  url + "&longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
-            }else{
-                url =  url + "longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
-                hasFilter = true;
-            }
+            url =  url + "&longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
         }
-
-        if(hasFilter){
-            return url;
-        }
-        return urlBasic;
+        return url;
     }
 
     public void onRequestEstablishment(View view){
@@ -143,6 +123,7 @@ public class Result extends AppCompatActivity {
                         Log.d(TAG, "good, onResponse: " + response);
                         try{
                             estabishmentsList(response);
+                            getPageNumber(response);
                         }catch (JSONException err){}
                     }
                 }, new Response.ErrorListener() {
@@ -161,7 +142,14 @@ public class Result extends AppCompatActivity {
         };
         requestQueue.add(getRequest);
     }
-
+    public void getPageNumber(JSONObject meta)throws JSONException {
+        JSONObject jObject = meta.getJSONObject("meta");
+        try{
+            maxPage = jObject.getInt("totalPages");
+        }catch (JSONException err){
+            Log.d(TAG, "estabishmentsList, error: " + err);
+        }
+    }
     public void estabishmentsList(JSONObject items) throws JSONException {
         Log.d(TAG, "estabishmentsList: started");
         establishments.clear();
@@ -184,5 +172,20 @@ public class Result extends AppCompatActivity {
         }
         establishAdpt.notifyDataSetChanged();
         Log.d(TAG, "estabishmentsList: done");
+    }
+
+    public void nextPage(View view){
+        Log.d(TAG, "nextPage: ");
+        if(page < maxPage){
+            page ++;
+
+        }
+    }
+    public void previousPage(View view){
+        Log.d(TAG, "previousPage: ");
+        if(page > 0){
+            page --;
+            onRequestEstablishment((ListView)findViewById(R.id.ListViewResult));
+        }
     }
 }

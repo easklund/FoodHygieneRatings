@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -85,6 +86,16 @@ public class Home extends AppCompatActivity {
         regionsAdpt = new ArrayAdapter(this, android.R.layout.simple_selectable_list_item, regions);
         regionsAdpt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         RegionSpinner.setAdapter(regionsAdpt);
+        RegionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                onRequestAuthorities();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         onRequestRegions();
 
         Spinner AuthoritySpinner = (Spinner) findViewById(R.id.AuthoritySpinner);
@@ -100,10 +111,6 @@ public class Home extends AppCompatActivity {
                 latitude = location.getLatitude();
                 Log.d(TAG, "onLocationChanged: logitude: " + longitude);
                 Log.d(TAG, "onLocationChanged: latitude: " + latitude);
-                ((TextView) findViewById(R.id.longitude)).setText(String.format("%.2f",
-                        location.getLongitude()));
-                ((TextView) findViewById(R.id.latitude)).setText(String.format("%.2f",
-                        location.getLatitude()));
             }
 
             @Override
@@ -134,8 +141,6 @@ public class Home extends AppCompatActivity {
             requestLocPerms();
         }
 
-        updateLocationText();
-
     }
     public void requestLocPerms(){
         ActivityCompat.requestPermissions(Home.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_LOCATION_PERMISSION);
@@ -165,13 +170,6 @@ public class Home extends AppCompatActivity {
         } catch (SecurityException err) {
             Log.wtf("LocMan", "LocManager error");
         }
-    }
-    private void updateLocationText(){
-        TextView posLongitude = findViewById(R.id.longitude);
-        TextView posLatitude = findViewById(R.id.latitude);
-        posLongitude.setText(Double.toString(longitude));
-        posLatitude.setText(Double.toString(latitude));
-
     }
     public void ToFavourites(View view) {
         Intent intent = new Intent(this, Fave.class);
@@ -376,7 +374,7 @@ public class Home extends AppCompatActivity {
     private void onRequestAuthorities() {
         Log.d(TAG, "onRequestAuthorities: started");
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        final String allAuthorities = "http://api.ratings.food.gov.uk/Authorities/basic";
+        final String allAuthorities = "http://api.ratings.food.gov.uk/Authorities";
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, allAuthorities, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -410,13 +408,30 @@ public class Home extends AppCompatActivity {
         authorities.clear();
         authorities.add(new Authority(-1, "empty", "All Authorities"));
         JSONArray jArray = items.getJSONArray("authorities");
-        try {
-            for (int i = 0; i < jArray.length(); i++) {
-                JSONObject jo = jArray.getJSONObject(i);
-                authorities.add(new Authority(jo.getInt("LocalAuthorityId"), jo.getString("LocalAuthorityIdCode"), jo.getString("Name")));
+        Spinner regionSpinner = (Spinner) findViewById(R.id.RegionSpinner);
+        String regionName = regions.get(regionSpinner.getSelectedItemPosition()).getName();
+        if(regionName.equals("All regions")){
+            try {
+                for (int i = 0; i < jArray.length(); i++) {
+                    JSONObject jo = jArray.getJSONObject(i);
+                    if(!jo.getString("RegionName").equals("Scotland")){
+                        authorities.add(new Authority(jo.getInt("LocalAuthorityId"), jo.getString("LocalAuthorityIdCode"), jo.getString("Name")));
+                    }
+                }
+            } catch (JSONException err) {
+                Log.d(TAG, "fillAuthorityList: error: " + err);
             }
-        } catch (JSONException err) {
-            Log.d(TAG, "fillAuthorityList: error: " + err);
+        }else{
+            try {
+                for (int i = 0; i < jArray.length(); i++) {
+                    JSONObject jo = jArray.getJSONObject(i);
+                    if(jo.getString("RegionName").equals(regionName)){
+                        authorities.add(new Authority(jo.getInt("LocalAuthorityId"), jo.getString("LocalAuthorityIdCode"), jo.getString("Name")));
+                    }
+                }
+            } catch (JSONException err) {
+                Log.d(TAG, "fillAuthorityList: error: " + err);
+            }
         }
         authoritiesAdpt.notifyDataSetChanged();
         Log.d(TAG, "fillAuthorityList: done");
