@@ -2,4 +2,18 @@
     <string name="app_name">Food Hygiene Ratings</string>
     <string name="appName">Food Hygiene Ratings</string>
     <string name="startSearching">Search</string>
+    <string name="WhatToSearchFor">What do you wanna search for?</string>
+    <string name="PickBusiness">Pick a Busieness type</string>
+    <string name="PickRatingOperator">Pick how to select rating</string>
+    <string name="Equal">Equal to</string>
+    <string name="Most">At most</string>
+    <string name="Least">At least</string>
+    <string name="PickRating">Pick rating</string>
+    <string name="PickRegion">Pick a region</string>
+    <string name="PickAuthority">Pick a authority</string>
+    <string name="EnterRadius">Enter what radius you want to search within (in miles): </string>
+    <string name="ToFavourites">To Favourites</string>
+    <string name="AddToFavourites">Add to Favourites</string>
+    <string name="RemoveFromFavourites">Remove from Favourites</string>
+    <string name="Loading">Loading your result</string>
 </resources>

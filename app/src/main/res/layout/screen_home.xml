@@ -1,294 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pretty"
     tools:context=".Home">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <ScrollView
+    <TextView
+        android:id="@+id/SearchText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/WhatToSearchFor"
+        android:textSize="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SearchText"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/TextBusieness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchView"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/PickBusiness"
+        android:textSize="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/colorPrimary">
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            >
+    <Spinner
+        android:id="@+id/BuissnesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextBusieness"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextBusieness" />
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+    <TextView
+        android:id="@+id/TextRatingOperator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BuissnesSpinner"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/PickRatingOperator"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner" />
 
-            <TextView
-                android:id="@+id/TextBusieness"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick a Busieness type"
-                android:textSize="10dp"
-                android:layout_below="@id/searchView"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchView"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/RadioRatingOperator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextRatingOperator"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextRatingOperator">
 
-            <Spinner
-                android:id="@+id/BuissnesSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/TextBusieness"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextBusieness"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+        <RadioButton
+            android:id="@+id/radioEqual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="onRadioRatingOperator"
+            android:text="@string/Equal" />
 
-            <TextView
-                android:id="@+id/TextRatingOperator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick how to select rating"
-                android:textSize="10dp"
-                android:layout_below="@id/BuissnesSpinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/BuissnesSpinner"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+        <RadioButton
+            android:id="@+id/radioLess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="onRadioRatingOperator"
+            android:text="@string/Most" />
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/RadioRatingOperator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/TextRatingOperator"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextRatingOperator"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp">
+        <RadioButton
+            android:id="@+id/radioHigher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="onRadioRatingOperator"
+            android:text="@string/Least" />
+    </RadioGroup>
 
-                <RadioButton
-                    android:id="@+id/radioEqual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="onRadioRatingOperator"
-                    android:text="Equal to" />
+    <TextView
+        android:id="@+id/TextRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RadioRatingOperator"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/PickRating"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/RadioRatingOperator" />
 
-                <RadioButton
-                    android:id="@+id/radioLess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="onRadioRatingOperator"
-                    android:text="Less and equal to" />
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/RadioRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextRating"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextRating">
 
-                <RadioButton
-                    android:id="@+id/radioHigher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="onRadioRatingOperator"
-                    android:text="Higher and equal to" />
-            </RadioGroup>
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:onClick="onRadioRating"
+            android:text="1" />
 
-            <TextView
-                android:id="@+id/TextRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick rating"
-                android:textSize="10dp"
-                android:layout_below="@id/RadioRatingOperator"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/RadioRatingOperator"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:onClick="onRadioRating"
+            android:text="2" />
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/RadioRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/TextRating"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextRating"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp">
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:onClick="onRadioRating"
+            android:text="3" />
 
-                <RadioButton
-                    android:id="@+id/radio1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:onClick="onRadioRating"
-                    android:text="1" />
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:onClick="onRadioRating"
+            android:text="4" />
 
-                <RadioButton
-                    android:id="@+id/radio2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:onClick="onRadioRating"
-                    android:text="2" />
+        <RadioButton
+            android:id="@+id/radio5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:onClick="onRadioRating"
+            android:text="5" />
+    </RadioGroup>
 
-                <RadioButton
-                    android:id="@+id/radio3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:onClick="onRadioRating"
-                    android:text="3" />
+    <TextView
+        android:id="@+id/TextRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RadioRating"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/PickRegion"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/RadioRating" />
 
-                <RadioButton
-                    android:id="@+id/radio4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:onClick="onRadioRating"
-                    android:text="4" />
+    <Spinner
+        android:id="@+id/RegionSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextRegion"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextRegion" />
 
-                <RadioButton
-                    android:id="@+id/radio5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:onClick="onRadioRating"
-                    android:text="5" />
-            </RadioGroup>
+    <TextView
+        android:id="@+id/TextAuthority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RegionSpinner"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/PickAuthority"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/RegionSpinner" />
 
-            <TextView
-                android:id="@+id/TextRegion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick a region type"
-                android:textSize="10dp"
-                android:layout_below="@id/RadioRating"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/RadioRating"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+    <Spinner
+        android:id="@+id/AuthoritySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextAuthority"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextAuthority" />
 
-            <Spinner
-                android:id="@+id/RegionSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/TextRegion"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextRegion"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
+    <TextView
+        android:id="@+id/TextRadian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AuthoritySpinner"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:text="@string/EnterRadius"
+        android:textSize="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AuthoritySpinner" />
 
-            <TextView
-                android:id="@+id/TextAuthority"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick a authority type"
-                android:textSize="10dp"
-                android:layout_below="@id/RegionSpinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/RegionSpinner"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
-
-            <Spinner
-                android:id="@+id/AuthoritySpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/TextAuthority"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextAuthority"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
-
-            <TextView
-                android:id="@+id/TextRadian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Enter searching radisn in miles: "
-                android:textSize="10dp"
-                android:layout_below="@id/AuthoritySpinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/AuthoritySpinner"
-                android:layout_marginTop="3dp"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
-
-            <EditText
-                android:id="@+id/EditRadius"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:layout_below="@id/TextRadian"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextRadian"
-                android:background="@color/titleText"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"/>
-
-            <Button
-                android:id="@+id/StartSearching"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="StartSearch"
-                android:text="@string/startSearching"
-                android:theme="@style/newButton"
-                android:layout_below="@id/EditRadius"/>
-            <Button
-                android:id="@+id/ToFavourites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="ToFavourites"
-                android:text="To Favourites"
-                android:theme="@style/newButton"
-                android:layout_below="@id/EditRadius"
-                android:layout_alignParentEnd="true"/>
+    <EditText
+        android:id="@+id/EditRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextRadian"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/titleText"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextRadian" />
 
 
-        </RelativeLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/StartSearching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="StartSearch"
+        android:text="@string/startSearching"
+        android:theme="@style/newButton" />
+
+    <Button
+        android:id="@+id/ToFavourites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="ToFavourites"
+        android:text="To Favourites"
+        android:theme="@style/newButton" />
 
 </RelativeLayout>

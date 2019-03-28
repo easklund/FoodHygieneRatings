@@ -28,4 +28,7 @@ public class Favourite {
     public void setName(String name) {
         this.Name = name;
     }
+    public String toString(){
+        return Name;
+    }
 }

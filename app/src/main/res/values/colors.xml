@@ -6,7 +6,8 @@
     <color name="error">#FF0000</color>
     <color name="okey">#04B431</color>
     <color name="text">#000000</color>
-    <color name="buttonBackground">#A9D0F5</color>
+    <color name="buttonBackground">#FFFFFF</color>
+    <color name="pretty">#A9D0F5</color>
     <color name="homeFrag">#D81B60</color>
     <color name="aboutFrag">#04B431</color>
     <color name="settingsFrag">#5882FA</color>

@@ -7,66 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".Fave">
 
-    <TextView
-        android:id="@+id/BorrowIDView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Borrower ID:" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-    <EditText
-        android:id="@+id/borrowerID"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/BorrowIDView" />
+    <ListView
+        android:id="@+id/ListViewFavourites"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="50dp"/>
 
-    <Button
-        android:id="@+id/setBorrowerID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_below="@+id/BorrowIDView"
-        android:layout_toRightOf="@+id/borrowerID"/>
-
-    <TextView
-        android:id="@+id/FHRSIText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FHRSI id:"
-        android:layout_below="@+id/borrowerID"
-        android:layout_marginTop="10dp"/>
-    <TextView
-        android:id="@+id/NameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:layout_below="@+id/EditFHRSID"/>
-
-    <EditText
-        android:id="@+id/EditFHRSID"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/borrowerID"
-        android:layout_toRightOf="@id/FHRSIText"/>
-    <EditText
-        android:id="@+id/EditName"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/EditFHRSID"
-        android:layout_toRightOf="@id/FHRSIText"/>
-    <Button
-        android:id="@+id/addFavourite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add favourite"
-        android:onClick="addFavouriteClick"
-        android:layout_below="@+id/EditFHRSID"
-        android:layout_toRightOf="@+id/EditName"
-        android:layout_marginStart="10dp"/>
 
 </RelativeLayout>

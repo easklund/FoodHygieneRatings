@@ -10,9 +10,10 @@
     </style>
 
     <style name="newButton" parent="Widget.AppCompat.Button">
-        <item name="android:background">@color/buttonBackground</item>
+        <item name="android:background">@color/colorPrimary</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/titleText</item>
     </style>
 
 </resources>

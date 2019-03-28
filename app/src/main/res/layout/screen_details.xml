@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Details">
+    tools:context=".Details"
+    android:background="@color/pretty">
 
     <include
         android:id="@+id/toolbar"
@@ -17,7 +18,11 @@
         android:layout_below="@+id/toolbar"
         android:id="@+id/NameView"
         android:textSize="20dp"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/titleText"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +30,11 @@
         android:layout_below="@+id/NameView"
         android:id="@+id/TypeView"
         android:textSize="20dp"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/titleText"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,7 +42,11 @@
         android:layout_below="@id/TypeView"
         android:id="@+id/IDView"
         android:textSize="20dp"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/titleText"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -41,6 +54,31 @@
         android:layout_below="@id/IDView"
         android:id="@+id/RateView"
         android:textSize="20dp"
-        android:textColor="@color/text"/>
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/titleText"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RateView"
+        android:saveEnabled="false"
+        android:numStars="5"
+        android:stepSize="1.0"
+        android:rating="2.0"
+        android:isIndicator="true"/>
+    <Button
+        android:id="@+id/AddToFavourites"
+        android:theme="@style/newButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AddToFavourites"
+        android:onClick="AddToFavourites"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

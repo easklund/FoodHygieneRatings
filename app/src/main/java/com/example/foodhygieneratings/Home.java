@@ -63,6 +63,7 @@ public class Home extends AppCompatActivity {
     LocationListener locListener;
 
     private int radius;
+    private String searchText;
 
 
     @Override
@@ -72,6 +73,12 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
+        if(savedInstanceState == null){
+
+        }else{
+            radius = savedInstanceState.getInt("radius");
+            searchText = savedInstanceState.getString("searchText");
+        }
 
         ratingOperator = "Equal";
         rating = -1;
@@ -142,10 +149,14 @@ public class Home extends AppCompatActivity {
         }
 
     }
+    public void onSaveInstanceState(Bundle b){
+        super.onSaveInstanceState(b);
+        b.putString("searchText", searchText);
+        b.putInt("radius", radius);
+    }
     public void requestLocPerms(){
         ActivityCompat.requestPermissions(Home.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_LOCATION_PERMISSION);
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -157,7 +168,6 @@ public class Home extends AppCompatActivity {
             }
         }
     }
-
     public void attachLocManager() {
         try {
             locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
@@ -193,6 +203,8 @@ public class Home extends AppCompatActivity {
         } else {
             radius = Integer.parseInt(editRadius.getText().toString());
         }
+        EditText editSearch = findViewById(R.id.searchView);
+        searchText = editSearch.getText().toString();
 
         attachLocManager();
 
@@ -204,6 +216,7 @@ public class Home extends AppCompatActivity {
         intent.putExtra("Longitude", longitude);
         intent.putExtra("Latitude", latitude);
         intent.putExtra("Radius", radius);
+        intent.putExtra("SearchText", searchText);
         startActivity(intent);
     }
 
@@ -409,7 +422,11 @@ public class Home extends AppCompatActivity {
         authorities.add(new Authority(-1, "empty", "All Authorities"));
         JSONArray jArray = items.getJSONArray("authorities");
         Spinner regionSpinner = (Spinner) findViewById(R.id.RegionSpinner);
-        String regionName = regions.get(regionSpinner.getSelectedItemPosition()).getName();
+        int a = regionSpinner.getSelectedItemPosition();
+        String regionName = "All regions";
+        if(a>-1){
+            regionName = regions.get(a).getName();
+        }
         if(regionName.equals("All regions")){
             try {
                 for (int i = 0; i < jArray.length(); i++) {

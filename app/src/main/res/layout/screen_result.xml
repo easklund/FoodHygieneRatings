@@ -10,6 +10,20 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <TextView
+        android:id="@+id/LoadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Loading"
+        android:textSize="20dp"
+        android:textColor="@color/text"
+        android:background="@color/pretty"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/toolbar"/>
+
     <ListView
         android:id="@+id/ListViewResult"
         android:layout_width="match_parent"
@@ -26,6 +40,17 @@
         android:text="NEXT"
         android:onClick="nextPage"
         android:theme="@style/newButton" />
+    <TextView
+        android:id="@+id/PageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Page 0/0"
+        android:textSize="20dp"
+        android:textColor="@color/text"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"/>
     <Button
         android:id="@+id/PreviousButton"
         android:text="PREVIOUS"

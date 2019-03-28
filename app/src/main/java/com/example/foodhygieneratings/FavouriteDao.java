@@ -16,6 +16,7 @@ public interface FavouriteDao {
         @Query("SELECT * FROM favourite")
         Favourite[] retrieveAllFave();
 
-
+        @Query("DELETE FROM favourite WHERE FHRSID=:fhrsid")
+        void deleteFavFRomFHRSID(int fhrsid);
 
 }

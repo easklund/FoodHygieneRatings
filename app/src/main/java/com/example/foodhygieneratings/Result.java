@@ -1,6 +1,7 @@
 package com.example.foodhygieneratings;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,6 +42,7 @@ public class Result extends AppCompatActivity {
     private double longitude;
     private double latitude;
     private int radius;
+    private String searchText;
 
     private String url;
     int page;
@@ -70,6 +73,8 @@ public class Result extends AppCompatActivity {
         Log.d(TAG, "onCreate: latitude: " + latitude);
         radius = getIntent().getIntExtra("Radius", -1);
         Log.d(TAG, "onCreate: raduis: " + radius);
+        searchText = getIntent().getStringExtra("SearchText");
+        Log.d(TAG, "onCreate: searchText: " + searchText);
 
 
         establishAdpt = new ArrayAdapter(this,android.R.layout.simple_selectable_list_item, establishments);
@@ -92,6 +97,9 @@ public class Result extends AppCompatActivity {
 
     private String getUrl(){
         url = "http://api.ratings.food.gov.uk/Establishments?pageNumber=" + page +"&pageSize=20";
+        if(!searchText.equals("")){
+            url = url + "&name=" + searchText;
+        }
         if(businessTypeId!=-1){
             url =  url + "&businessTypeId=" + businessTypeId;
         }
@@ -146,6 +154,8 @@ public class Result extends AppCompatActivity {
         JSONObject jObject = meta.getJSONObject("meta");
         try{
             maxPage = jObject.getInt("totalPages");
+            TextView pageView = findViewById(R.id.PageView);
+            pageView.setText("Page " + page + "/" + maxPage);
         }catch (JSONException err){
             Log.d(TAG, "estabishmentsList, error: " + err);
         }
@@ -170,7 +180,12 @@ public class Result extends AppCompatActivity {
         }catch (JSONException err){
             Log.d(TAG, "estabishmentsList, error: " + err);
         }
+        TextView loading = findViewById(R.id.LoadingView);
+        loading.setBackgroundColor(Color.parseColor("#ffffff"));
+        loading.setText("");
         establishAdpt.notifyDataSetChanged();
+        TextView pageView = findViewById(R.id.PageView);
+        pageView.setText("Page " + page + "/" + maxPage);
         Log.d(TAG, "estabishmentsList: done");
     }
 
@@ -178,14 +193,24 @@ public class Result extends AppCompatActivity {
         Log.d(TAG, "nextPage: ");
         if(page < maxPage){
             page ++;
-
+            TextView loading = findViewById(R.id.LoadingView);
+            loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+            loading.setText("Loading next page");
+            onRequestEstablishment((ListView)findViewById(R.id.ListViewResult));
+            TextView pageView = findViewById(R.id.PageView);
+            pageView.setText("Page " + page + "/" + maxPage);
         }
     }
     public void previousPage(View view){
         Log.d(TAG, "previousPage: ");
         if(page > 0){
             page --;
+            TextView loading = findViewById(R.id.LoadingView);
+            loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+            loading.setText("Loading previous page");
             onRequestEstablishment((ListView)findViewById(R.id.ListViewResult));
+            TextView pageView = findViewById(R.id.PageView);
+            pageView.setText("Page " + page + "/" + maxPage);
         }
     }
 }
