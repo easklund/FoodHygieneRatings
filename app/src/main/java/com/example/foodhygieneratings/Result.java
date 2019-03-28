@@ -203,7 +203,7 @@ public class Result extends AppCompatActivity {
     }
     public void previousPage(View view){
         Log.d(TAG, "previousPage: ");
-        if(page > 0){
+        if(page > 1){
             page --;
             TextView loading = findViewById(R.id.LoadingView);
             loading.setBackgroundColor(Color.parseColor("#A9D0F5"));

@@ -73,9 +73,9 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
 
-        }else{
+        } else {
             radius = savedInstanceState.getInt("radius");
             searchText = savedInstanceState.getString("searchText");
         }
@@ -99,6 +99,7 @@ public class Home extends AppCompatActivity {
                                        int position, long id) {
                 onRequestAuthorities();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -144,30 +145,34 @@ public class Home extends AppCompatActivity {
                             }
                         }).create().show();
             }
-        }else {
+        } else {
             requestLocPerms();
         }
 
     }
-    public void onSaveInstanceState(Bundle b){
+
+    public void onSaveInstanceState(Bundle b) {
         super.onSaveInstanceState(b);
         b.putString("searchText", searchText);
         b.putInt("radius", radius);
     }
-    public void requestLocPerms(){
+
+    public void requestLocPerms() {
         ActivityCompat.requestPermissions(Home.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_LOCATION_PERMISSION);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case FINE_LOCATION_PERMISSION:{
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            case FINE_LOCATION_PERMISSION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     attachLocManager();
                 }
                 return;
             }
         }
     }
+
     public void attachLocManager() {
         try {
             locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
@@ -181,6 +186,7 @@ public class Home extends AppCompatActivity {
             Log.wtf("LocMan", "LocManager error");
         }
     }
+
     public void ToFavourites(View view) {
         Intent intent = new Intent(this, Fave.class);
         startActivity(intent);
@@ -424,25 +430,25 @@ public class Home extends AppCompatActivity {
         Spinner regionSpinner = (Spinner) findViewById(R.id.RegionSpinner);
         int a = regionSpinner.getSelectedItemPosition();
         String regionName = "All regions";
-        if(a>-1){
+        if (a > -1) {
             regionName = regions.get(a).getName();
         }
-        if(regionName.equals("All regions")){
+        if (regionName.equals("All regions")) {
             try {
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject jo = jArray.getJSONObject(i);
-                    if(!jo.getString("RegionName").equals("Scotland")){
+                    if (!jo.getString("RegionName").equals("Scotland")) {
                         authorities.add(new Authority(jo.getInt("LocalAuthorityId"), jo.getString("LocalAuthorityIdCode"), jo.getString("Name")));
                     }
                 }
             } catch (JSONException err) {
                 Log.d(TAG, "fillAuthorityList: error: " + err);
             }
-        }else{
+        } else {
             try {
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject jo = jArray.getJSONObject(i);
-                    if(jo.getString("RegionName").equals(regionName)){
+                    if (jo.getString("RegionName").equals(regionName)) {
                         authorities.add(new Authority(jo.getInt("LocalAuthorityId"), jo.getString("LocalAuthorityIdCode"), jo.getString("Name")));
                     }
                 }
@@ -453,5 +459,7 @@ public class Home extends AppCompatActivity {
         authoritiesAdpt.notifyDataSetChanged();
         Log.d(TAG, "fillAuthorityList: done");
     }
+
+
 
 }
