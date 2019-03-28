@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,6 +48,7 @@ public class Result extends AppCompatActivity {
     private double latitude;
     private int radius;
     private String searchText;
+    private String sortOption;
 
     private String url;
     int page;
@@ -56,6 +62,7 @@ public class Result extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Result from you search");
         page = 1;
+        sortOption = "alpha";
 
         businessTypeId = getIntent().getIntExtra("BusinessName", 0);
         Log.d(TAG, "onCreate: businessTypeId; " + businessTypeId);
@@ -94,6 +101,58 @@ public class Result extends AppCompatActivity {
         };
         listview.setOnItemClickListener(itemClickListener);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sort_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        ListView listview = (ListView)findViewById(R.id.ListViewResult);
+        TextView loading = findViewById(R.id.LoadingView);
+        switch (item.getItemId()){
+            case R.id.item1:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "Relevance";
+                onRequestEstablishment(listview);
+                return true;
+            case R.id.item2:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "rating";
+                onRequestEstablishment(listview);
+                return true;
+            case R.id.item3:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "desc_rating";
+                onRequestEstablishment(listview);
+                return true;
+            case R.id.item4:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "alpha";
+                onRequestEstablishment(listview);
+                return true;
+            case R.id.item5:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "desc_alpha";
+                onRequestEstablishment(listview);
+                return true;
+            case R.id.item6:
+                loading.setBackgroundColor(Color.parseColor("#A9D0F5"));
+                loading.setText("Loading next page");
+                sortOption = "Distance";
+                onRequestEstablishment(listview);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private String getUrl(){
         url = "http://api.ratings.food.gov.uk/Establishments?pageNumber=" + page +"&pageSize=20";
@@ -116,6 +175,7 @@ public class Result extends AppCompatActivity {
         if(radius!=-1){
             url =  url + "&longitude=" + longitude + "&latitude=" + latitude + "&maxDistanceLimit=" + radius;
         }
+        url = url + "&sortOptionKey="+sortOption;
         return url;
     }
 

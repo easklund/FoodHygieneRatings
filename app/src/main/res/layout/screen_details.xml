@@ -52,6 +52,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/IDView"
+        android:id="@+id/IDAdress"
+        android:textSize="20dp"
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/titleText"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IDAdress"
+        android:id="@+id/IDPostCode"
+        android:textSize="20dp"
+        android:textColor="@color/text"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/titleText"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IDPostCode"
         android:id="@+id/RateView"
         android:textSize="20dp"
         android:textColor="@color/text"

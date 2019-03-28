@@ -34,7 +34,7 @@ public class Details extends AppCompatActivity {
     private String TAG = "Details";
     private int FHRSID;
     private String name;
-    private int rating;
+    private String rating;
     private FavouriteList db;
     Favourite newFave;
 
@@ -105,7 +105,11 @@ public class Details extends AppCompatActivity {
 
     public void setRatingBar() {
         RatingBar rateBar = findViewById(R.id.ratingBar);
-        rateBar.setRating(rating);
+        rateBar.setRating(Integer.parseInt(rating));
+    }
+    public void setRatingBarZero(){
+        RatingBar rateBar = findViewById(R.id.ratingBar);
+        rateBar.setRating(0);
     }
 
     public void estabishmentsList(JSONObject items) throws JSONException {
@@ -114,6 +118,8 @@ public class Details extends AppCompatActivity {
         TextView type = findViewById(R.id.TypeView);
         TextView id = findViewById(R.id.IDView);
         TextView rate = findViewById(R.id.RateView);
+        TextView adress = findViewById(R.id.IDAdress);
+        TextView postCode = findViewById(R.id.IDPostCode);
         Log.d(TAG, "estabishmentsList: " + items.getString("BusinessName"));
         try {
             Log.d(TAG, "estabishmentsList: in Try");
@@ -124,11 +130,17 @@ public class Details extends AppCompatActivity {
             getSupportActionBar().setTitle(this.name);
             name.setText("Name: " + items.getString("BusinessName"));
             type.setText("Type: " + items.getString("BusinessType"));
+            adress.setText("Adress: " + items.getString("AddressLine1"));
+            postCode.setText("Post code: " + items.getString("PostCode"));
             String s = "ID: " + Integer.toString(items.getInt("FHRSID"));
             id.setText(s);
-            rating = Integer.parseInt(items.getString("RatingValue"));
+            rating = items.getString("RatingValue");
             rate.setText("Rate: " + rating);
-            setRatingBar();
+            if(rating.equals("1")||rating.equals("2")||rating.equals("3")||rating.equals("4")||rating.equals("5")||rating.equals("0")){
+                setRatingBar();
+            }else{
+                setRatingBarZero();
+            }
             newFave.setName(this.name);
 
         } catch (JSONException err) {
